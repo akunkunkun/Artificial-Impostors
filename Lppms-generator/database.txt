@@ -1,0 +1,75 @@
+table = 'shmap'
+
++-----------------+
+| Tables_in_shmap |
++-----------------+
+| node            |
+| regiondistance  |
+| regionedge      |
+| regiontime      |
+| section         |
+| transregion     |
+| way             |
++-----------------+
+
+CREATE TABLE `node` (
+  `id` varchar(64) NOT NULL,
+  `lat` varchar(256) DEFAULT NULL,
+  `lon` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `regiondistance` (
+  `r1` varchar(64) NOT NULL,
+  `r2` varchar(64) NOT NULL,
+  `distance` float DEFAULT NULL,
+  PRIMARY KEY (`r1`,`r2`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `regionedge2` (
+  `r1` int(11) NOT NULL,
+  `r2` int(11) NOT NULL,
+  `similarity` float DEFAULT NULL,
+  PRIMARY KEY (`r1`,`r2`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `regiontime` (
+  `r` int(11) NOT NULL,
+  `t` int(11) NOT NULL,
+  `ref` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`r`,`t`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `section` (
+  `id` int(11) NOT NULL,
+  `road_id` varchar(45) DEFAULT NULL,
+  `endpoint1` varchar(45) DEFAULT NULL,
+  `lon1` float DEFAULT NULL,
+  `lat1` float DEFAULT NULL,
+  `endpoint2` varchar(45) DEFAULT NULL,
+  `lon2` float DEFAULT NULL,
+  `lat2` float DEFAULT NULL,
+  `section_len` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `transregion` (
+  `info` varchar(64) NOT NULL,
+  `item` varchar(64) NOT NULL,
+  `weight` float DEFAULT NULL,
+  PRIMARY KEY (`info`,`item`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `way` (
+  `id` varchar(64) NOT NULL,
+  `ref` varchar(8192) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `regionedgefill` (
+  `r1` int(11) NOT NULL,
+  `r2` int(11) NOT NULL,
+  `similarity` float DEFAULT NULL,
+  PRIMARY KEY (`r1`,`r2`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
